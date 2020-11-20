@@ -73,7 +73,7 @@ class RailFenceCipher
 
   def fill(msg, defl=DEFL)
     ##
-    ## ex. "message to encode!", with @rails = 4
+    ## ex. "messagetoencode", with @rails = 4
     ##  rails | m e s s a g e t o e n c o d e
     ##  -------------------------------------
     ##  r[0]  | m . . . . . e . . . . . o . .
