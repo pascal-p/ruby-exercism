@@ -30,21 +30,10 @@ class RailFenceCipher
 
   def decode()
     ## 0 - prep. with placeholder ?
-    msg_ph = '?' * @msg.length
-    r = fill(msg_ph)
+    r = fill('?' * @msg.length)
 
     ## 1 - repl. placeholder
-    lix, ix = 0, 0
-    each_rails do |jx|
-      while ix < r[jx].length do
-        if r[jx][ix] == '?'
-          r[jx][ix] = @msg[lix]
-          lix += 1
-        end
-        ix += 1
-      end
-      ix = 0 # reset
-    end
+    repl_ph!(r)
 
     ## 2 - construct decoded message
     decoded = []
@@ -93,6 +82,19 @@ class RailFenceCipher
     end
 
     r
+  end
+
+  def repl_ph!(rows)
+    ## modify rows in-place
+    lix = 0
+    each_rails do |jx|
+      0.upto(rows[jx].length - 1) do |ix|
+        if rows[jx][ix] == '?'
+          rows[jx][ix] = @msg[lix]
+          lix += 1
+        end
+      end
+    end
   end
 
   def incr_fn(kx, incr)

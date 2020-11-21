@@ -17,7 +17,7 @@ RSpec.describe RailFenceCipher do
 
     it 'fills the rails' do
       ary = @rfc.send(:fill, @msg)
-      
+
       expect(ary.length).to eq(@rails)
 
       expect(ary[0]).to match_array(["m", ".", ".", ".", ".", ".", "e", ".", ".", ".", ".", ".", "o", ".", "."])
@@ -38,13 +38,13 @@ RSpec.describe RailFenceCipher do
 
       kx, incr = @rfc.send(:incr_fn, kx, incr)
       expect(kx).to eq(@rails - 2)
-      expect(incr).not_to be      
+      expect(incr).not_to be
     end
 
     it 'calculates the right decr sequence' do
       kx, incr = @rails - 2, false
 
-      (@rails - 2).downto(0) do |ix|        
+      (@rails - 2).downto(0) do |ix|
         expect(kx).to eq(ix)
         expect(incr).not_to be
 
@@ -54,7 +54,7 @@ RSpec.describe RailFenceCipher do
       expect(kx).to eq(1)
       expect(incr).to be
     end
-    
+
   end
 
 end
